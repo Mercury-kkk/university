@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration system</title>
+    <h1> 韩国湖南大学硕士研究生入学申请表 </h1>
+    <script>
+        function autoResize() {
+            var textarea = document.getElementById("myTextarea");
+            textarea.style.height = "auto";
+            textarea.style.height = textarea.scrollHeight + "px";
+        }
+
+        function cansubmit(){
+            var a = document.getElementById("agree");
+            var b = document.getElementById("submit");
+            b.disabled = !a.checked;
+        }
+
+        function handleFileUpload(){
+            var inputElement = document.getElementById("photoInput");
+            var previewElement = document.getElementById("photoPreview");
+
+            var file=inputElement.files[0];
+            if(file){
+                var reader = new FileReader();
+                reader.onload=function (e){
+                    previewElement.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</head>
+
+
+<style>
+    body{
+        margin: 0;
+        padding: 10px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    form{
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse; /* 合并边框 */
+        border: 1px solid black; /* 设置表格边框 */
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    th, td {
+        border: 1px solid black; /* 设置单元格边框 */
+        padding: 5px; /* 设置单元格内边距 */
+
+
+    }
+</style>
+
+<body>
+<div class="container">
+    <table id="table">
+        <tr>
+            <td colspan="3"><p>韩国湖南大学<br>地址：韩国光州广域市光山区湖南大街120号</p></td>
+            <td><p><strong>全日制 </strong> <select> <option value="option1"> 硕士 Master </option>  <option value="option2"> 博士 Doctor </option></select> <br> <strong>Full-time</strong></p></td>
+            <td>
+                <form action="/submit" method="post">
+                    <label for="photoInput"> 上传照片 </label>
+                    <input type="file" id="photoInput" name="photoInput" accept="image/*" onchange="handleFileUpload()"> <br>
+                    <img id="photoPreview" src="#" alt="图片预览" style="max-width: 300px; max-height: 300px"><br>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"><p><strong> 申请人信息 Information </strong></p></td>
+        </tr>
+        <tr>
+            <td><p>申请专业——方向 <br> Major-direction</p></td>
+            <td><select> <option> 人力资源管理 </option>
+                <option> 金融与会计 </option>
+                <option> 市场营销 </option>
+                <option> 全球化物流管理 </option>
+                <option> 企业经营管理 </option>
+                <option> 美术学类 </option>
+                <option> 数字媒体传播学类 </option>
+                <option> 艺术设计学硕士 </option>
+            </select></td>
+            <td colspan="2"><p>授课语言 <br> Teaching Language</p></td>
+            <td><input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td><p>*中文姓名 <br> Name</p></td>
+            <td><input type="text" name="myText" id ="chinesename" ></td>
+            <td colspan="2"><p>出生日期 <br>（YY-MM-DD） <br> 以身份证或护照为准 <br>Date of birth</p></td>
+            <td><select> <option value="option1"> 身份证 ID Card </option>  <option value="option2"> 护照 Passport </option></select><br><input type="text" name="myText" id="personal"></td>
+        </tr>
+        <tr>
+            <td><p>英文姓名 <br> Passport Name <br> （护照拼写为准）</p></td>
+            <td><input type="text" name="myText"></td>
+            <td colspan="2"><p>婚否 & 性别 <br>Marital status & Sex </p></td>
+            <td><select> <option> 未婚 unmarried </option><option> 已婚 married </option>  </select><br> <select> <option value="option1"> 男 male </option>  <option value="option2"> 女 female </option></select></td>
+        </tr>
+        <tr>
+            <td><p>*身份证号 <br> ID Card NO. </p></td>
+            <td><input type="text" name="myText"></td>
+            <td colspan="2"><p>国籍 & 身份证签发地 <br>Nationality & ID card issuing place </p></td>
+            <td><input type="text" name="myText"><br> <input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td><p>护照号 <br> Passport NO. </p></td>
+            <td><input type="text" name="myText"></td>
+            <td colspan="2"><p>护照签发地 & 有效期截止日期（YY-MM-DD） <br>Passport issued & valid until </p></td>
+            <td><input type="text" name="myText"><br> <input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td rowspan="3"><p>联系方式 <br> Contact </p></td>
+            <td rowspan="1"><p>微信账号 <br> Wechat </p></td>
+            <td><input type="text" name="myText"></td>
+            <td rowspan="1"><p>电话 <br> Mobile phone </p></td>
+            <td><input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td rowspan="1"><p>QQ账号 <br> QQ ID </p></td>
+            <td><input type="text" name="myText"></td>
+            <td rowspan="1"><p>邮箱 <br> E-mail </p></td>
+            <td><input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td rowspan="1"><p>地址 <br> Address </p></td>
+            <td colspan="3"><textarea id="myTextarea1" rows="4" cols="50" oninput="autoResize()"></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="5"><p><strong>教育背景  Education: Academic history starting from high school </strong> </p></td>
+        </tr>
+        <tr>
+            <td><p>学历 Degree </p></td>
+            <td><p>毕业学校 Name of school </p></td>
+            <td><p>入学年月 From-To <br> (YY-MM) </p></td>
+            <td><p>毕业年月 Graduation year <br> (YY-MM) </p></td>
+            <td><p>修读专业 Major </p></td>
+        </tr>
+        <tr>
+            <td><p>高中 <br> High school </p></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td><p>专科 <br> College </p></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td><p>本科 <br> Bachelor </p></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td><p>硕士 <br> Master </p></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td colspan="5"><p><strong>家庭成员/紧急联系人 Family Members/Emergency contact </strong> </p></td>
+        </tr>
+        <tr>
+            <td><p>关系 Relations </p></td>
+            <td><p>姓名 Name </p></td>
+            <td><p>出生日期 <br> Date of birth <br> (YY-MM-DD) </p></td>
+            <td><p>单位/职务 <br> Name of work place/title in office </p></td>
+            <td><p>电话 Mobile NO. </p></td>
+        </tr>
+        <tr>
+            <td><p>父亲 <br>  Father </p></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td><p>母亲  <br> Mother </p></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td><p>直系亲属紧急联系人 <br> Immediate family emergency contact </p></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+            <td><input type="text" name="myText"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><p>直系亲属紧急联络地址<br>（需真实居住可邮寄）<br> Immediate family emergency contact address </p></td>
+            <td colspan="3"> <textarea id="myTextarea2" rows="4" cols="50" oninput="autoResize()"></textarea> </td>
+        </tr>
+        <tr>
+            <td colspan="5"><p><strong> 申请人其他信息  Other information of the applicant  </strong> </p></td>
+        </tr>
+        <tr>
+            <td><p>健康状况   <br> Health </p></td>
+            <td colspan="4"><p>
+                抑郁类病症 Depression: <input type="checkbox" name="colors" value="blue"  /><br />
+                精神类病症Psychosis: <input type="checkbox" name="colors" value="yellow" /><br />
+                传染类病症Infectious diseases: <input type="checkbox" name="colors" value="red" /><br />
+                皮肤传染类病症Skin infectious diseases: <input type="checkbox" name="colors" value="green"  /><br />
+                急性心脏病症Acute heart disease : <input type="checkbox" name="colors" value="green"  /><br />
+                个人特殊疾病Personal special diseases: <input type="checkbox" name="colors" value="green"  /><br/>
+                完全健康Completely healthy: <input type="checkbox" name="colors" value="green" /><br/>
+                其他疾病 Other diseases（请填写）:<input type="text" name="myText"> <input type="checkbox" name="colors" value="green" />
+            </p></td></td>
+        </tr>
+        <tr>
+            <td colspan="2"><p>外语水平 English level </p></td>
+            <td> <input type="text" name="myText"> </td>
+            <td> <p> 宗教信仰  religious belief</p>
+            <td> <input type="text" name="myText"> </td>
+        </tr>
+        <tr>
+            <td colspan="2"><p>工作单位 <br>Company/Organization</p></td>
+            <td><input type="text" name="myText"></td>
+            <td> <p> 职位  religious belief</p>
+            <td><input type="text" name="myText"></td>
+        </tr>
+
+        <tr>
+            <td><p>信息来源  <br> Sources </p></td>
+            <td colspan="4">
+                <p>
+                    官网官微 Official website/micro-blog/ Official WeChat: <input type="checkbox" name="colors"/><br />
+                    网络媒体 Network media: <input type="checkbox" name="colors" value="yellow" /><br />
+                    朋友介绍 Friends introduce: <input type="checkbox" name="colors" value="red" /><br />
+                    合作院校、机构 Cooperative Academy: <input type="checkbox" name="colors" value="green"  /><br />
+                    院校老师 College teachers: <input type="checkbox" name="colors" value="green"  /><br />
+                    贴吧 Post Bar: <input type="checkbox" name="colors" value="green"  /><br/>
+                    其他 Others（请填写）: <input type="text" name="myText"> <input type="checkbox" name="colors" value="green"  />
+                </p></td>
+        </tr>
+
+        <tr>
+            <td ><p>推荐人/单位 <br>Referee/Company</p></td>
+            <td><input type="text" name="myText"></td>
+            <td> <p> 班主任/辅导员姓名  Form master/coach Name <br>联系电话  Contact NO </p>
+            <td><input type="text" name="myText"><br><input type="text" name="myText"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="5"><p><strong> 学员声明(Applicant Agreement): </strong></p>
+                <P>
+                    我已明确如实填写个人身体健康情况，作为身体与心理健康的完全民事行为能力人能够自主监测自己身体变化安排好学习与生活。我已仔细阅读学生手册、报名表，并充分理解其内容。我明白在学习过程中，学校如发现此报名表有填写不属实之处有权解除我的学籍。<br>
+                    I understand that withholding pertinent information requested on this application or giving false information will make me ineligible for admission to the University or subject to dismissal, With this in my mind, I certify that the statements are correct and complete. Furthermore, I agree that if I am enrolled in this program, I will adhere to and be bound by the applicable rules and regulations of this program.
+                    <br> *我已经阅读了学员声明（I have read the Applicant Agreement）:<input type="checkbox" id = "agree"  onchange="cansubmit()" />
+                </P>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="5"><p><strong> 自我介绍 Personal Statement  </strong></p></td>
+        </tr>
+        <tr>
+            <td colspan="5"><textarea id="myTextarea5" rows="4" cols="50" oninput="autoResize()"></textarea> </td>
+        </tr>
+
+    </table>
+    <form>
+        <script>
+            function printPDF(){
+                const shouldPrint = window.confirm('确定打印吗？');
+                if (shouldPrint) {
+                    window.print();
+                }else{
+                    window.location.reload();
+                    return;
+                }
+            }
+        </script>
+        <button id = "submit"  disabled onclick="printPDF()">打印</button>
+        <p>——————————确认所有带*的信息准确无误以后再点击打印——————————</p>
+        <p>提交方法： 点击打印 ->  确定 -> 目标打印机处选择另存为PDF -> 保存 -> 将PDF发送到指定邮箱（）</p>
+    </form>
+</div>
+</body>
+</html>
